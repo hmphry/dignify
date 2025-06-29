@@ -16,11 +16,11 @@ if (!process.env.MONGODB_URI) {
 
 if (process.env.NODE_ENV === 'development') {
     // In dev, reuse global client to avoid multiple instances on hot reload
-    if (!global._mongoClientPromise) {
+    if (!globalThis._mongoClientPromise) {
         client = new MongoClient(uri!, options);
-        global._mongoClientPromise = client.connect();
+        globalThis._mongoClientPromise = client.connect();
     }
-    clientPromise = global._mongoClientPromise;
+    clientPromise = globalThis._mongoClientPromise;
 } else {
     // In prod, don't reuse client
     client = new MongoClient(uri!, options);

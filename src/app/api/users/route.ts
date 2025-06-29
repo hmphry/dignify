@@ -2,9 +2,9 @@
 import { NextResponse } from 'next/server';
 
 // utils
-import clientPromise from '@/utils/mongodb';
+import clientPromise from '@/utils/database';
 import { hashPassword, isValidPassword } from '@/utils/password';
-import { send200, send400, send409, send500 } from '@/utils/apiResponses';
+import { send200, send400, send409, send500 } from '@/utils/api-responses';
 
 // types
 import { User } from '@/types/user';
@@ -29,9 +29,9 @@ export async function POST(request: Request): Promise<NextResponse> {
             };
 
         const client = await clientPromise;
-        const db = client.db(process.env.DATABASE_NAME);
+        const database = client.db(process.env.DATABASE_NAME);
 
-        const checkEmail = await db
+        const checkEmail = await database
             .collection<User>('users')
             .findOne({ email });
         if (checkEmail)
@@ -48,7 +48,7 @@ export async function POST(request: Request): Promise<NextResponse> {
             role: 'user',
         };
 
-        const result = await db.collection<User>('users').insertOne(user);
+        const result = await database.collection<User>('users').insertOne(user);
 
         return send200(
             {

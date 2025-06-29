@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export interface ApiResponse<Data> {
-    data: Data | null;
+    data: Data | undefined;
     success: boolean;
     message?: string;
 }
@@ -11,7 +11,7 @@ export interface ApiResponse<Data> {
 // message is optional and can be used to provide additional information
 function createApiResponse<Data>(
     code: number,
-    data: Data | null,
+    data: Data | undefined,
     success: boolean,
     message?: string
 ): NextResponse {

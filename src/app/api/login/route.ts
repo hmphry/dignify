@@ -3,8 +3,8 @@ import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 
 // utils
-import clientPromise from '@/utils/mongodb';
-import { send200, send400, send401, send500 } from '@/utils/apiResponses';
+import clientPromise from '@/utils/database';
+import { send200, send400, send401, send500 } from '@/utils/api-responses';
 import { comparePasswords } from '@/utils/password';
 
 // types
@@ -18,9 +18,9 @@ export async function POST(request: Request): Promise<NextResponse> {
         if (!email || !password) throw 400;
 
         const client = await clientPromise;
-        const db = client.db(process.env.DATABASE_NAME);
+        const database = client.db(process.env.DATABASE_NAME);
 
-        const user = await db.collection<User>('users').findOne({ email });
+        const user = await database.collection<User>('users').findOne({ email });
 
         if (!user) throw 401;
         if (!(await comparePasswords(password, user.password))) throw 401;

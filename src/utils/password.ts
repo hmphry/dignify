@@ -31,7 +31,7 @@ export const passwordRules = [
 ];
 
 export async function hashPassword(password: string): Promise<string> {
-    const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS || '10', 10);
+    const saltRounds = Number.parseInt(process.env.BCRYPT_SALT_ROUNDS || '10', 10);
     return bcrypt.hash(password, saltRounds);
 }
 
@@ -47,6 +47,6 @@ export function isValidPassword(password: string): boolean {
         ...rule,
         result: rule.test(password),
     }));
-    if (!results.every((result) => result)) return false;
+    if (!results.every(Boolean)) return false;
     return true;
 }
