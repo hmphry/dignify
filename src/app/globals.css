@@ -1,26 +1,107 @@
 @import 'tailwindcss';
 
 :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    --light-50: hsl(46, 4%, 97%);
+    --light-100: hsl(46, 4%, 91%);
+    --light-200: hsl(46, 4%, 85%);
+    --light-300: hsl(46, 4%, 79%);
+    --light-400: hsl(46, 4%, 73%); 
+    --light-500: hsl(46, 4%, 67%); 
+    --light-600: hsl(46, 4%, 61%); 
+    --light-700: hsl(46, 4%, 55%); 
+    --light-800: hsl(46, 4%, 49%); 
+    --light-900: hsl(46, 4%, 43%); 
+    --light-950: hsl(46, 4%, 37%);
+
+
+    --dark-50: hsl(40, 4%, 14%);
+    --dark-100: hsl(40, 4%, 17%);
+    --dark-200: hsl(40, 4%, 20%);
+    --dark-300: hsl(40, 4%, 23%);
+    --dark-400: hsl(40, 4%, 26%);
+    --dark-500: hsl(40, 4%, 29%);
+    --dark-600: hsl(40, 4%, 32%);
+    --dark-700: hsl(40, 4%, 35%);
+    --dark-800: hsl(40, 4%, 38%);
+    --dark-900: hsl(40, 4%, 41%);
+    --dark-950: hsl(40, 4%, 44%);
+    
+
+    --background-50: var(--light-50);
+    --background-100: var(--light-100);
+    --background-200: var(--light-200);
+    --background-300: var(--light-300);
+    --background-400: var(--light-400);
+    --background-500: var(--light-500);
+    --background-600: var(--light-600);
+    --background-700: var(--light-700);
+    --background-800: var(--light-800);
+    --background-900: var(--light-900);
+    --background-950: var(--light-950);
+
+    --foreground-50: var(--dark-50);
+    --foreground-100: var(--dark-100);
+    --foreground-200: var(--dark-200);
+    --foreground-300: var(--dark-300);
+    --foreground-400: var(--dark-400);
+    --foreground-500: var(--dark-500);
+    --foreground-600: var(--dark-600);
+    --foreground-700: var(--dark-700);
+    --foreground-800: var(--dark-800);
+    --foreground-900: var(--dark-900);
+    --foreground-950: var(--dark-950);
+
+    --primary: #F07167;
+    --accent: #00AFB9;
+    --font-funnel-display: /* automatically injected by Next.js */;
+    --font-funnel-sans: /* automatically injected by Next.js */;
 }
 
 @theme inline {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
+
+    --color-foreground: var(--foreground-50);
+    --color-foreground-50: var(--foreground-50);
+    --color-foreground-100: var(--foreground-100);
+    --color-foreground-200: var(--foreground-200);
+    --color-foreground-300: var(--foreground-300);
+    --color-foreground-400: var(--foreground-400);
+    --color-foreground-500: var(--foreground-500);
+    --color-foreground-600: var(--foreground-600);
+    --color-foreground-700: var(--foreground-700);
+    --color-foreground-800: var(--foreground-800);
+    --color-foreground-900: var(--foreground-900);
+    --color-foreground-950: var(--foreground-950);
+
+    --color-background: var(--background-50);
+    --color-background-50: var(--background-50);
+    --color-background-100: var(--background-100);
+    --color-background-200: var(--background-200);
+    --color-background-300: var(--background-300);
+    --color-background-400: var(--background-400);
+    --color-background-500: var(--background-500);
+    --color-background-600: var(--background-600);
+    --color-background-700: var(--background-700);
+    --color-background-800: var(--background-800);
+    --color-background-900: var(--background-900);
+    --color-background-950: var(--background-950);
+
+    --color-primary: var(--primary);
+    --color-accent: var(--accent);
+
+    --font-sans: var(--font-funnel-sans);
+    --font-display: var(--font-funnel-display);
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
-    }
-}
-
+/* Set Funnel Sans as the default body font */
 body {
-    background: var(--background);
-    color: var(--foreground);
-    font-family: Arial, Helvetica, sans-serif;
+    @apply bg-background text-foreground font-sans antialiased;
+}
+
+/* Utility classes for specific font usage */
+.font-display {
+    font-family: var(--font-funnel-display), serif;
+}
+
+.font-sans {
+    font-family: var(--font-funnel-sans), sans-serif;
 }
